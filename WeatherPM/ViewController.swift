@@ -22,7 +22,8 @@ class ViewController: UIViewController {
     @IBOutlet weak var windDirOutlet: UITextField!
     @IBOutlet weak var windSpeedOutlet: UITextField!
     @IBOutlet weak var airPressureOutlet: UITextField!
-
+    @IBOutlet weak var imageOutlet: UIImageView!
+    
     @IBOutlet weak var nextButtonOutlet: UIButton!
     @IBOutlet weak var previousButtonOutlet: UIButton!
     
@@ -83,6 +84,7 @@ class ViewController: UIViewController {
         self.windDirOutlet.text = forecast.windDirection
         self.windSpeedOutlet.text = String(format: "%.0f", forecast.windSpeed) + " mph"
         self.airPressureOutlet.text = String(format: "%.0f", forecast.airPressure) + " mbar"
+        self.loadImage(abbr: forecast.conditionTypeAbbr)
     }
     
     @IBAction func nextButtonAction() {
@@ -101,6 +103,29 @@ class ViewController: UIViewController {
         if currentDayIndex == 0 {
             self.previousButtonOutlet.isEnabled = false
         }
+    }
+    
+    func loadImage(abbr : String){
+        print(abbr)
+        var url = URL(string : "https://www.metaweather.com/static/img/weather/png/\(abbr).png")!
+        let task = URLSession.shared.dataTask(with: url) {
+            (data, response, error) in
+            if error != nil {
+                return
+            }
+            if let res = response as? HTTPURLResponse {
+                if let imageData = data {
+                    let image = UIImage(data: imageData)
+                    DispatchQueue.main.async {
+                        self.imageOutlet.image = image
+                    }
+
+                } else {
+                    return
+                }
+            }
+        }
+        task.resume()
     }
 }
 

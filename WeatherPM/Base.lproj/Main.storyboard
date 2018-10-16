@@ -173,6 +173,7 @@
                         <outlet property="conditionsImageOutlet" destination="U7u-35-rWE" id="f3Q-YP-PoX"/>
                         <outlet property="conditionsOutlet" destination="B3z-3e-s5y" id="sKH-H1-2JL"/>
                         <outlet property="dateOutlet" destination="UKb-TG-iQX" id="rUo-fo-etM"/>
+                        <outlet property="imageOutlet" destination="U7u-35-rWE" id="tIl-rX-TEn"/>
                         <outlet property="maxTempOutlet" destination="gdA-hS-ef3" id="ffa-9b-tV6"/>
                         <outlet property="minTempOutlet" destination="A41-0b-cXg" id="ecO-WT-neW"/>
                         <outlet property="nextButtonOutlet" destination="2MR-TB-xAb" id="FWi-ir-9B7"/>
