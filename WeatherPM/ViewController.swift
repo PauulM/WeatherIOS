@@ -69,8 +69,15 @@ class ViewController: UIViewController {
     }
 
     func updateView(dayNo : Int) -> Void {
-        self.dateOutlet.text = "\(String(self.forecasts[dayNo].year))-\(String(self.forecasts[dayNo].month))-\(String(self.forecasts[dayNo].day))"
+        let forecast = forecasts[dayNo]
+        self.dateOutlet.text = "\(String(forecast.year))-\(String(forecast.month))-\(String(forecast.day))"
         self.conditionsOutlet.text = forecasts[dayNo].conditionType
+        self.tempOutlet.text = String(format: "%.2f", forecast.temp) + " C"
+        self.maxTempOutlet.text = String(format: "%.2f", forecast.maxTemp) + " C"
+        self.minTempOutlet.text = String(format: "%.2f", forecast.minTemp) + " C"
+        self.windDirOutlet.text = forecast.windDirection
+        self.windSpeedOutlet.text = String(format: "%.2f", forecast.windSpeed) + " mph"
+        self.airPressureOutlet.text = String(format: "%.2f", forecast.airPressure) + " mbar"
     }
 }
 
