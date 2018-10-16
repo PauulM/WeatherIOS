@@ -56,7 +56,6 @@ class ViewController: UIViewController {
                     dayForecast.maxTemp = (currentDayForecast["max_temp"] as! Double)
                     dayForecast.minTemp = (currentDayForecast["min_temp"] as! Double)
                     dayForecast.windDirection = (currentDayForecast["wind_direction_compass"] as! String)
-                    //dayForecast.rainfall = first["weather_state_abbr"] as! String
                     dayForecast.airPressure = (currentDayForecast["air_pressure"] as! Double)
                     self.forecasts.append(dayForecast)
                     if i==0 {
@@ -106,7 +105,6 @@ class ViewController: UIViewController {
     }
     
     func loadImage(abbr : String){
-        print(abbr)
         var url = URL(string : "https://www.metaweather.com/static/img/weather/png/\(abbr).png")!
         let task = URLSession.shared.dataTask(with: url) {
             (data, response, error) in
