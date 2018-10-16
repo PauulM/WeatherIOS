@@ -11,6 +11,8 @@ import UIKit
 class ViewController: UIViewController {
 
     var forecasts = [DayConditions]()
+    var currentDayIndex = 0;
+    let maxDayIndex = 5;
     @IBOutlet weak var dateOutlet: UITextField!
     @IBOutlet weak var conditionsOutlet: UITextField!
     @IBOutlet weak var conditionsImageOutlet: UIImageView!
@@ -20,6 +22,10 @@ class ViewController: UIViewController {
     @IBOutlet weak var windDirOutlet: UITextField!
     @IBOutlet weak var windSpeedOutlet: UITextField!
     @IBOutlet weak var airPressureOutlet: UITextField!
+
+    @IBOutlet weak var nextButtonOutlet: UIButton!
+    @IBOutlet weak var previousButtonOutlet: UIButton!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,10 +39,8 @@ class ViewController: UIViewController {
             let responseJson = data
             do{
                 let response = try JSONSerialization.jsonObject(with: responseJson!) as! [String: Any]
-                let title = response["title"] as! String
-                print(title)
                 let array = response["consolidated_weather"] as! [[String:Any]]
-                for i in 0...5{
+                for i in 0...self.maxDayIndex{
                     let currentDayForecast = array[i]
                     let dateString = (currentDayForecast["applicable_date"] as! String)
                     let dateArray = dateString.split(separator: "-").map(String.init)
@@ -65,19 +69,38 @@ class ViewController: UIViewController {
                 return
             }
         }
-        task.resume()      
+        task.resume()
+        self.previousButtonOutlet.isEnabled = false;
     }
 
     func updateView(dayNo : Int) -> Void {
         let forecast = forecasts[dayNo]
         self.dateOutlet.text = "\(String(forecast.year))-\(String(forecast.month))-\(String(forecast.day))"
         self.conditionsOutlet.text = forecasts[dayNo].conditionType
-        self.tempOutlet.text = String(format: "%.2f", forecast.temp) + " C"
-        self.maxTempOutlet.text = String(format: "%.2f", forecast.maxTemp) + " C"
-        self.minTempOutlet.text = String(format: "%.2f", forecast.minTemp) + " C"
+        self.tempOutlet.text = String(format: "%.0f", forecast.temp) + " C"
+        self.maxTempOutlet.text = String(format: "%.0f", forecast.maxTemp) + " C"
+        self.minTempOutlet.text = String(format: "%.0f", forecast.minTemp) + " C"
         self.windDirOutlet.text = forecast.windDirection
-        self.windSpeedOutlet.text = String(format: "%.2f", forecast.windSpeed) + " mph"
-        self.airPressureOutlet.text = String(format: "%.2f", forecast.airPressure) + " mbar"
+        self.windSpeedOutlet.text = String(format: "%.0f", forecast.windSpeed) + " mph"
+        self.airPressureOutlet.text = String(format: "%.0f", forecast.airPressure) + " mbar"
+    }
+    
+    @IBAction func nextButtonAction() {
+        self.previousButtonOutlet.isEnabled = true
+        self.currentDayIndex += 1
+        self.updateView(dayNo: currentDayIndex)
+        if currentDayIndex == self.maxDayIndex {
+            self.nextButtonOutlet.isEnabled = false
+        }
+    }
+
+    @IBAction func previousButtonAction() {
+        self.nextButtonOutlet.isEnabled = true
+        self.currentDayIndex -= 1
+        self.updateView(dayNo: currentDayIndex)
+        if currentDayIndex == 0 {
+            self.previousButtonOutlet.isEnabled = false
+        }
     }
 }
 

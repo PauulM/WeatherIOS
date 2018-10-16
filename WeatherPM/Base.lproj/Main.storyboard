@@ -147,6 +147,22 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="23"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2MR-TB-xAb">
+                                <rect key="frame" x="290" y="617" width="69" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Next"/>
+                                <connections>
+                                    <action selector="nextButtonAction" destination="BYZ-38-t0r" eventType="touchUpInside" id="Q4N-Aa-C32"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SSg-Tz-oIO">
+                                <rect key="frame" x="16" y="617" width="59" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Previous"/>
+                                <connections>
+                                    <action selector="previousButtonAction" destination="BYZ-38-t0r" eventType="touchUpInside" id="Vxq-hM-XxN"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
@@ -159,6 +175,8 @@
                         <outlet property="dateOutlet" destination="UKb-TG-iQX" id="rUo-fo-etM"/>
                         <outlet property="maxTempOutlet" destination="gdA-hS-ef3" id="ffa-9b-tV6"/>
                         <outlet property="minTempOutlet" destination="A41-0b-cXg" id="ecO-WT-neW"/>
+                        <outlet property="nextButtonOutlet" destination="2MR-TB-xAb" id="FWi-ir-9B7"/>
+                        <outlet property="previousButtonOutlet" destination="SSg-Tz-oIO" id="L3c-86-rF0"/>
                         <outlet property="tempOutlet" destination="zDg-vn-Hyz" id="Y9a-Bf-geV"/>
                         <outlet property="windDirOutlet" destination="GTB-LD-tmC" id="aSw-MP-6M0"/>
                         <outlet property="windSpeedOutlet" destination="2d7-O8-n3r" id="oaY-Eu-Mnd"/>
