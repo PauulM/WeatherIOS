@@ -77,9 +77,9 @@ class ViewController: UIViewController {
         let forecast = forecasts[dayNo]
         self.dateOutlet.text = "\(String(forecast.year))-\(String(forecast.month))-\(String(forecast.day))"
         self.conditionsOutlet.text = forecasts[dayNo].conditionType
-        self.tempOutlet.text = String(format: "%.0f", forecast.temp) + " C"
-        self.maxTempOutlet.text = String(format: "%.0f", forecast.maxTemp) + " C"
-        self.minTempOutlet.text = String(format: "%.0f", forecast.minTemp) + " C"
+        self.tempOutlet.text = String(format: "%.0f", forecast.temp) + "℃"
+        self.maxTempOutlet.text = String(format: "%.0f", forecast.maxTemp) + "℃"
+        self.minTempOutlet.text = String(format: "%.0f", forecast.minTemp) + "℃"
         self.windDirOutlet.text = forecast.windDirection
         self.windSpeedOutlet.text = String(format: "%.0f", forecast.windSpeed) + " mph"
         self.airPressureOutlet.text = String(format: "%.0f", forecast.airPressure) + " mbar"
